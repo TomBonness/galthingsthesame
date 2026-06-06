@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "EXPERIMENT NO. 42 // THE GALTON DECISION-TREE",
+  title: "EXPERIMENT NO. 03 // THE GALTON DECISION-TREE",
   description: "An inquiry into subjective choice and mathematical certainty.",
 };
 

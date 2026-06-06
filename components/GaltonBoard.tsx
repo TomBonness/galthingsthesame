@@ -7,9 +7,10 @@ interface GaltonBoardProps {
   isAnimating: boolean;
   setIsAnimating: (animating: boolean) => void;
   onAnimationComplete: () => void;
-  history: number[][];
+  totalRuns: number;
+  binCounts: number[];
+  questionProbs: number[];
 }
-
 const getPegX = (r: number, c: number) => {
   const deltaX = 36;
   const W = 600;
@@ -34,7 +35,9 @@ export default function GaltonBoard({
   isAnimating,
   setIsAnimating,
   onAnimationComplete,
-  history,
+  totalRuns,
+  binCounts,
+  questionProbs,
 }: GaltonBoardProps) {
   const [tokenPos, setTokenPos] = useState({ x: getPegX(0, 0), y: getPegY(0) });
   const [currentLevel, setCurrentLevel] = useState(0);
@@ -127,42 +130,16 @@ export default function GaltonBoard({
     };
   }, []);
 
-  // Compute Statistics & Bins
-  const totalRuns = history.length;
-
-  // Calculate empirical probabilities p_i with Laplace smoothing
-  const probs = Array(10).fill(0.5);
-  if (totalRuns > 0) {
-    const counts = Array(10).fill(0);
-    history.forEach((path) => {
-      path.forEach((choice, idx) => {
-        if (idx < 10) {
-          counts[idx] += choice;
-        }
-      });
-    });
-    for (let i = 0; i < 10; i++) {
-      probs[i] = (counts[i] + 1) / (totalRuns + 2);
-    }
-  }
-
+  // Calculate empirical probabilities p_i
+  const probs = questionProbs && questionProbs.length === 10 ? questionProbs : Array(10).fill(0.5);
   const mean = probs.reduce((a, b) => a + b, 0);
   const variance = probs.reduce((a, b) => a + b * (1 - b), 0);
-
-  // Compute bin counts
-  const binCounts = Array(11).fill(0);
-  history.forEach((path) => {
-    const sum = path.reduce((a, b) => a + b, 0);
-    if (sum >= 0 && sum <= 10) {
-      binCounts[sum]++;
-    }
-  });
-
-  const maxCount = Math.max(...binCounts);
+  // Default bin counts if not provided
+  const binCountsToUse = binCounts && binCounts.length === 11 ? binCounts : Array(11).fill(0);
+  const maxCount = Math.max(...binCountsToUse);
   const histogramBaseline = 570;
   const histogramMaxHeight = 110;
   const scaleY = histogramMaxHeight / Math.max(5, maxCount);
-
   // Empirical Gaussian Curve Path
   const startX = 80;
   const endX = 520;
@@ -283,7 +260,7 @@ export default function GaltonBoard({
           />
 
           {/* Histogram Bars */}
-          {binCounts.map((count, idx) => {
+          {binCountsToUse.map((count, idx) => {
             const barWidth = 20;
             const x = 120 + idx * 36 - barWidth / 2;
             const barHeight = count * scaleY;

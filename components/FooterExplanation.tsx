@@ -26,10 +26,9 @@ export default function FooterExplanation() {
             Lindeberg-Feller CLT Convergence
           </h4>
           <p className="text-xs text-swiss-text/80 leading-relaxed text-justify uppercase font-medium">
-            The classical Central Limit Theorem assumes identical distributions. However, since subjective preferences for Coffee vs. Tea differ from Analog vs. Digital, each decision step has a unique probability p_i. Under the Lindeberg-Feller CLT, as long as no single question dominates the variance, the sum of these independent, non-identical trials {"S_n = \\sum_{i=1}^{10} X_i"} still converges to a normal Gaussian distribution.
+            The classical Central Limit Theorem assumes identical distributions. However, since subjective preferences for Coffee vs. Tea differ from Analog vs. Digital, each decision step has a unique probability <span className="normal-case font-semibold text-swiss-red">p<sub>i</sub></span>. Under the Lindeberg-Feller CLT, as long as no single question dominates the variance, the sum of these independent, non-identical trials <span className="normal-case font-semibold">S<sub>n</sub> = ∑<sub>i=1</sub><sup>10</sup> X<sub>i</sub></span> still converges to a normal Gaussian distribution <span className="normal-case font-semibold text-swiss-red">N(μ, σ²)</span>.
           </p>
         </div>
-
         {/* Column 3: The Formula */}
         <div className="p-8 font-sans flex flex-col justify-between">
           <div>
@@ -41,23 +40,28 @@ export default function FooterExplanation() {
             </h4>
           </div>
 
-          <div className="bg-swiss-text text-swiss-bg p-4 font-mono text-xs uppercase space-y-3 shadow-[2px_2px_0px_0px_#D81E05]">
+          <div className="bg-swiss-text text-swiss-bg p-4 font-mono text-xs space-y-4 shadow-[2px_2px_0px_0px_#D81E05]">
             <div>
               <span className="text-swiss-red font-bold">EXPECTED MEAN:</span>
-              <div className="mt-1 font-semibold text-[10px]">
-                &mu; = &Sigma; p_i
+              <div className="mt-1.5 font-semibold text-xs flex items-center gap-1">
+                μ = ∑<sub>i=1</sub><sup>10</sup> p<sub>i</sub>
               </div>
             </div>
-            <div className="border-t border-swiss-bg/25 pt-2">
+            <div className="border-t border-swiss-bg/25 pt-3">
               <span className="text-swiss-red font-bold">EXPECTED VARIANCE:</span>
-              <div className="mt-1 font-semibold text-[10px]">
-                &sigma;&sup2; = &Sigma; p_i(1 - p_i)
+              <div className="mt-1.5 font-semibold text-xs flex items-center gap-1">
+                σ² = ∑<sub>i=1</sub><sup>10</sup> p<sub>i</sub>(1 - p<sub>i</sub>)
               </div>
             </div>
-            <div className="border-t border-swiss-bg/25 pt-2">
+            <div className="border-t border-swiss-bg/25 pt-3">
               <span className="text-swiss-red font-bold">LIMIT DISTRIBUTION:</span>
-              <div className="mt-1 font-semibold text-[10px]">
-                (S_n - &mu;) / &sigma; &rarr; N(0, 1)
+              <div className="mt-2 font-semibold text-xs flex items-center gap-2">
+                <div className="flex flex-col items-center leading-none">
+                  <span className="border-b border-swiss-bg pb-0.5">S<sub>n</sub> - μ</span>
+                  <span className="pt-0.5">σ</span>
+                </div>
+                <span className="text-swiss-red font-bold">→</span>
+                <span>N(0, 1)</span>
               </div>
             </div>
           </div>
@@ -65,7 +69,7 @@ export default function FooterExplanation() {
       </div>
 
       <div className="border-t border-swiss-text p-4 text-center font-mono text-[9px] uppercase tracking-widest text-swiss-text/40">
-        EXPERIMENT NO. 42 // HARNESSING ENTROPY // DESIGNED IN SWITZERLAND // EST. 2026
+        EXPERIMENT NO. 03 // HARNESSING ENTROPY // DESIGNED IN SWITZERLAND // EST. 2026
       </div>
     </footer>
   );

@@ -30,18 +30,15 @@ interface QuestionSectionProps {
   onAnswer: (choice: number) => void;
   isAnimating: boolean;
   onReset: () => void;
-  onSimulate: () => void;
   onClearHistory: () => void;
   totalHistoryCount: number;
 }
-
 export default function QuestionSection({
   currentStep,
   answers,
   onAnswer,
   isAnimating,
   onReset,
-  onSimulate,
   onClearHistory,
   totalHistoryCount,
 }: QuestionSectionProps) {
@@ -79,7 +76,7 @@ export default function QuestionSection({
       {currentStep < QUESTIONS.length ? (
         <div className="flex-grow flex flex-col justify-center my-6">
           {/* Main Question Display */}
-          <div className="grid grid-cols-2 gap-8 items-center text-center relative">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-center text-center relative">
             {/* Left option */}
             <button
               onClick={() => !isAnimating && onAnswer(0)}
@@ -93,10 +90,9 @@ export default function QuestionSection({
                 {activeQuestion.leftLabel} (A / ◄)
               </span>
             </button>
-
-            {/* Vertical separator */}
-            <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-swiss-text/20 -translate-x-1/2" />
-
+            {/* Separator */}
+            <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-swiss-text/20 -translate-x-1/2 hidden sm:block" />
+            <div className="absolute left-0 right-0 top-1/2 h-[1px] bg-swiss-text/20 -translate-y-1/2 sm:hidden" />
             {/* Right option */}
             <button
               onClick={() => !isAnimating && onAnswer(1)}
@@ -112,11 +108,14 @@ export default function QuestionSection({
             </button>
           </div>
 
-          <div className="mt-12 text-center text-xs tracking-wider text-swiss-text/40 uppercase">
+          <div className="mt-12 text-center text-xs tracking-wider text-swiss-text/40 uppercase font-mono">
             {isAnimating ? (
               <span className="text-swiss-red font-bold animate-pulse">Token in motion down the board...</span>
             ) : (
-              "Use keyboard keys A / D or Arrow Left / Right to decide"
+              <div className="flex flex-col gap-1 items-center">
+                <span className="text-swiss-text/60 font-semibold animate-pulse">Awaiting input...</span>
+                <span>Use keyboard keys A / D or Arrow Left / Right to decide</span>
+              </div>
             )}
           </div>
         </div>
@@ -151,13 +150,6 @@ export default function QuestionSection({
               className="flex-1 py-3 px-6 bg-swiss-red hover:bg-swiss-red/90 text-white font-bold tracking-widest text-xs uppercase transition-colors duration-150 focus:outline-none rounded-none"
             >
               Play Again
-            </button>
-            <button
-              onClick={onSimulate}
-              disabled={isAnimating}
-              className="flex-1 py-3 px-6 bg-swiss-text hover:bg-swiss-text/90 text-swiss-bg font-bold tracking-widest text-xs uppercase transition-colors duration-150 focus:outline-none rounded-none"
-            >
-              Simulate 500 Runs
             </button>
           </div>
         </div>
