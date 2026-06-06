@@ -91,7 +91,7 @@ export default function Home() {
           </h2>
         </div>
         <div className="lg:col-span-4 lg:text-right font-mono text-[10px] uppercase tracking-widest text-swiss-text/50">
-          <span>Swiss Typographic Grid System v1.0</span>
+          <span>Decision Trajectory Visualizer v1.0</span>
         </div>
       </header>
 

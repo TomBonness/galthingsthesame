@@ -54,14 +54,12 @@ As you run the experiment, you see the red **Lindeberg-Feller Limit Curve** morp
 
 ---
 
-## Design Philosophy: Swiss Typographic Modernism
+## Minimalist Vector Visuals
 
-The visual identity of this experiment is inspired by the **International Typographic Style** (Swiss Style) of the mid-20th century:
-* **Asymmetrical Layouts**: The screen is split into a strict, asymmetrical typographic grid separated by clean $1\text{px}$ hairline borders.
-* **Typographic Hierarchy**: Massive, high-contrast sans-serif typefaces (`Inter`) highlight active binary choices, drawing immediate focus to the decisions.
-* **Warm Swiss Palette**: A warm off-white background (`#f4f4f0`), high-contrast near-black text (`#111111`), and Swiss Red (`#D81E05`) for paths, highlights, and the limit distribution curve.
-* **SVG Vector Geometry**: Clean vector pegs, trajectory lines, and histogram charts scale pixel-perfectly on any viewport. On mobile devices, the question options stack vertically to avoid label collision and maximize clarity.
-
+This project features a clean, high-contrast interface designed for maximum responsiveness:
+* **Binary Choice Focus**: Massive, bold typography guides the eye to the key subjective questions.
+* **Vector Board & Pathing**: Live SVG lines follow your choices in real-time, mapping your decisions dynamically down the board.
+* **Responsive Layouts**: On mobile, elements stack to prevent overlaps, ensuring a smooth experience on any device.
 ---
 
 ## Architecture: Serverless Group State

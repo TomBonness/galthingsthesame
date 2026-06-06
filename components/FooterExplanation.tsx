@@ -69,7 +69,7 @@ export default function FooterExplanation() {
       </div>
 
       <div className="border-t border-swiss-text p-4 text-center font-mono text-[9px] uppercase tracking-widest text-swiss-text/40">
-        EXPERIMENT NO. 03 // HARNESSING ENTROPY // DESIGNED IN SWITZERLAND // EST. 2026
+        EXPERIMENT NO. 03 // HARNESSING ENTROPY // EST. 2026
       </div>
     </footer>
   );
